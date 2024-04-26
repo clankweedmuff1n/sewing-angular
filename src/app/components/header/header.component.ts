@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {HeaderButtonComponent} from "../../utilities/header-button/header-button.component";
 import {NgClass, NgForOf, NgIf} from "@angular/common";
 import {HeaderButton} from "../../types/HeaderButton.type";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -16,7 +17,8 @@ import {HeaderButton} from "../../types/HeaderButton.type";
     <header class="top-0 bg-button-header-white fixed w-full z-30">
       <div class="flex justify-between py-5">
         <div class="flex items-center">
-          <header-button *ngFor="let button of this.headerButtons[0]" class="px-4 hidden lg:flex">{{ button.name }}</header-button>
+          <header-button *ngFor="let button of this.headerButtons[0]" class="px-4 hidden lg:flex">{{ button.name }}
+          </header-button>
           <a (click)="clickMenu()"
              class="pl-5 cursor-pointer w-[44px] h-[44px] align-middle flex lg:hidden justify-center items-center">
             <div class="inline-block relative w-[30px] h-[30px]">
@@ -39,12 +41,15 @@ import {HeaderButton} from "../../types/HeaderButton.type";
           </a>
         </div>
         <div class="flex items-center">
-          <img class="w-[140px] h-auto lg:w-[160px]"
-               src="https://thelinebyk.com/cdn/shop/files/logo_500x.png?v=1653050138" alt="The Line by K"
-               itemprop="logo">
+          <a class="cursor-pointer" (click)="this.router.navigate([''])">
+            <img class="w-[140px] h-auto lg:w-[160px]"
+                 src="https://x-lines.ru/letters/i/cyrillicscript/0444/030326/20/0/q3zsa5uxq3o1hau1cfzge.png" alt="The Line by K"
+                 itemprop="logo">
+          </a>
         </div>
         <div class="flex items-center">
-          <header-button *ngFor="let button of this.headerButtons[1]" class="px-4 hidden lg:flex">{{ button.name }}</header-button>
+          <header-button *ngFor="let button of this.headerButtons[1]" class="px-4 hidden lg:flex">{{ button.name }}
+          </header-button>
 
           <a class="h-fit cursor-pointer flex items-center justify-center px-5 py-1.5">
             <svg class="w-[18px] h-[18px] fill-button-header-white" viewBox="0 0 30 30"
@@ -77,23 +82,28 @@ import {HeaderButton} from "../../types/HeaderButton.type";
         </div>
       </div>
     </header>
-    <div *ngIf="statusMenuActive" class="px-10 pt-7 mt-[84px] z-40 absolute inset-0 bg-button-header-white block lg:hidden">
-        <div class="flex flex-col">
-          <header-button *ngFor="let button of this.headerButtons[0]" class="flex">{{ button.name }}</header-button>
-          <span class="my-3 opacity-50 bg-button-header-black w-full h-[1px]"></span>
-          <header-button *ngFor="let button of this.headerButtons[1]" class="flex">{{ button.name }}</header-button>
-        </div>
+    <div *ngIf="statusMenuActive"
+         class="transition-all px-10 pt-7 mt-[84px] z-40 fixed inset-0 bg-button-header-white block lg:hidden">
+      <div class="flex flex-col">
+        <header-button *ngFor="let button of this.headerButtons[0]" class="flex">{{ button.name }}</header-button>
+        <span class="my-3 opacity-50 bg-button-header-black w-full h-[1px]"></span>
+        <header-button *ngFor="let button of this.headerButtons[1]" class="flex">{{ button.name }}</header-button>
+      </div>
     </div>
     <div class="mb-[84px] lg:mb-[88.5px]"></div>
   `,
 })
 export class HeaderComponent {
+  constructor(protected router: Router) {
+  }
+
+
   statusMenuActive: boolean = false;
 
   headerButtons: Array<Array<HeaderButton>> = [
     [
       {
-        name: "New arrivals",
+        name: "О нас",
       },
       {
         name: "Shop",

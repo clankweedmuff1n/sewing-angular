@@ -1,14 +1,17 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {NgxSplideModule} from "ngx-splide";
-import {NgForOf} from "@angular/common";
-import {Product} from "../../types/Product.type";
+import {AsyncPipe, NgForOf} from "@angular/common";
+import {Product} from "../../models/product";
+import {Observable} from "rxjs";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-catalogue',
   standalone: true,
   imports: [
     NgxSplideModule,
-    NgForOf
+    NgForOf,
+    AsyncPipe
   ],
   template: `
     <section class="px-5 py-12 flex flex-col">
@@ -18,17 +21,26 @@ import {Product} from "../../types/Product.type";
         [options]="{ breakpoints: {
             '1024': {perPage: 3},
             '768': {perPage: 2},
-            '640': {perPage: 1, gap: 0}
+            '640': {perPage: 1, gap: 2}
         }, type: 'loop', perPage: 4, keyboard: false, gap: 20,
          classes: {
             pagination: 'splide__pagination !bottom-[-1.5rem]',
          }}">
-        <splide-slide *ngFor="let product of catalogueArray">
+        <!--<splide-slide *ngFor="let product of catalogueArray">
           <div class="flex flex-col">
             <img class="h-full" [src]="product.img"/>
             <div class="h-fit mt-2">
               <h4 class="font-medium">{{ product.name }}</h4>
               <h4 class="font-medium">{{ product.currency }} {{ product.price }}.00</h4>
+            </div>
+          </div>
+        </splide-slide>-->
+        <splide-slide *ngFor="let product of this.products$ | async">
+          <div class="flex flex-col" (click)="this.router.navigate(['products', product.link])">
+            <img class="max-h-[520px] lg:max-h-full h-full" [src]="product.gallery[0].image"/>
+            <div class="h-fit mt-2">
+              <h4 class="font-medium">{{ product.name }}</h4>
+              <h4 class="font-medium">₽ {{ product.price }}.00</h4>
             </div>
           </div>
         </splide-slide>
@@ -37,7 +49,12 @@ import {Product} from "../../types/Product.type";
   `,
 })
 export class CatalogueComponent {
-  catalogueArray: Product[] = [
+  @Input({required: true}) products$!: Observable<Product[]>;
+
+  constructor(protected router: Router) {
+  }
+
+  catalogueArray = [
     {
       name: "YONAS DRESS",
       img: "https://thelinebyk.com/cdn/shop/files/yonas-dress-black-the-line-by-k-504564_720x.jpg?v=1712797017",

@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
     <section class="">
 
       <div class="flex flex-col lg:flex-row gap-1">
-        <div class="w-full lg:w-1/2 h-[400px] lg:h-[120vh] relative bg-no-repeat bg-cover lg:bg-center"
+        <div class="w-full lg:w-1/2 h-[400px] max-h-[400px] lg:max-h-full lg:h-[120vh] relative bg-no-repeat bg-cover lg:bg-center"
              style="background-image: url('https://thelinebyk.com/cdn/shop/files/MOBILE-EDIT-3_900x.jpg?v=1712696066')">
           <div class="absolute inset-0">
             <div class="flex flex-col m-[10%] h-4/5 w-4/5 items-center justify-center">
@@ -20,7 +20,7 @@ import { Component } from '@angular/core';
             </div>
           </div>
         </div>
-        <div class="w-full lg:w-1/2 h-[400px] lg:h-[120vh] relative bg-no-repeat bg-cover lg:bg-center"
+        <div class="w-full lg:w-1/2 h-[400px] max-h-[400px] lg:max-h-full lg:h-[120vh] relative bg-no-repeat bg-cover lg:bg-center"
              style="background-image: url('https://thelinebyk.com/cdn/shop/files/MOBILE-EDIT-2_900x.jpg?v=1712696066')">
           <div class="absolute inset-0">
             <div class="flex flex-col m-[10%] h-4/5 w-4/5 items-center justify-center">

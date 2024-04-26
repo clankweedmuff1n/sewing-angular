@@ -1,8 +1,16 @@
-import { ApplicationConfig } from '@angular/core';
+import {ApplicationConfig, importProvidersFrom} from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
+import {HttpClientModule} from "@angular/common/http";
+import {NgxsModule} from "@ngxs/store";
+import {ProductState} from "./store/product/state/Product.state";
+import {CategoryState} from "./store/category/state/Category.state";
+import {GalleryItemState} from "./store/galleryItem/state/GalleryItem.state";
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes)]
+  providers: [
+    provideRouter(routes),
+    importProvidersFrom(HttpClientModule, NgxsModule.forRoot([ProductState, CategoryState, GalleryItemState]))
+  ]
 };
