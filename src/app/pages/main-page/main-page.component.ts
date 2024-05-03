@@ -11,6 +11,7 @@ import {Select, Store} from "@ngxs/store";
 import {GetAllProduct, ProductState} from "../../store/product/state/Product.state";
 import {Observable, take} from "rxjs";
 import {Product} from "../../models/product";
+import {AuthState} from "../../store/auth/state/Auth.state";
 
 @Component({
   selector: 'app-main-page',
@@ -26,7 +27,7 @@ import {Product} from "../../models/product";
     DELETEComponent
   ],
   template: `
-    <app-header/>
+    <app-header />
     <app-content/>
     <app-catalogue [products$]="products$"/>
     <app-look-book/>

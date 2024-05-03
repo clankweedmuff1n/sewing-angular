@@ -7,10 +7,11 @@ import {NgxsModule} from "@ngxs/store";
 import {ProductState} from "./store/product/state/Product.state";
 import {CategoryState} from "./store/category/state/Category.state";
 import {GalleryItemState} from "./store/galleryItem/state/GalleryItem.state";
+import {AuthState} from "./store/auth/state/Auth.state";
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
-    importProvidersFrom(HttpClientModule, NgxsModule.forRoot([ProductState, CategoryState, GalleryItemState]))
+    importProvidersFrom(HttpClientModule, NgxsModule.forRoot([ProductState, CategoryState, GalleryItemState, AuthState]))
   ]
 };

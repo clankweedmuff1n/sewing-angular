@@ -25,12 +25,12 @@ export class AuthService {
   }
 
   register(data: RegistrationRequest): Observable<AuthenticationResponse> {
-    return this.http.post<AuthenticationResponse>(`${this.apiUrl}/auth/register`, data).pipe(map(res => res));
+    return this.http.post<AuthenticationResponse>(`${this.apiUrl}/register`, data).pipe(map(res => res));
   }
 
   login(data: AuthenticationRequest): Observable<AuthenticationResponse> {
     return this.http
-      .post<AuthenticationResponse>(`${this.apiUrl}/auth/authenticate`, data)
+      .post<AuthenticationResponse>(`${this.apiUrl}/authenticate`, data)
       .pipe(map(res => res));
   }
 

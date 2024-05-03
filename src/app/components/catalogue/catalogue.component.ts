@@ -37,7 +37,7 @@ import {Router} from "@angular/router";
         </splide-slide>-->
         <splide-slide *ngFor="let product of this.products$ | async">
           <div class="flex flex-col" (click)="this.router.navigate(['products', product.link])">
-            <img class="max-h-[520px] lg:max-h-full h-full" [src]="product.gallery[0].image"/>
+            <img class="min-h-0 lg:max-h-full h-full" [src]="product.gallery[0].image"/>
             <div class="h-fit mt-2">
               <h4 class="font-medium">{{ product.name }}</h4>
               <h4 class="font-medium">₽ {{ product.price }}.00</h4>

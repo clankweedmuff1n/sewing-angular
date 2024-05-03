@@ -14,6 +14,11 @@ export class Login {
   constructor(public payload: { email: string; password: string }) {}
 }
 
+export class Register {
+  static readonly type = '[Auth] Register';
+  constructor(public payload: { first_name: string, last_name: string, email: string; password: string }) {}
+}
+
 export class Logout {
   static readonly type = '[Auth] Logout';
 }
@@ -42,6 +47,18 @@ export class AuthState {
   @Action(Login)
   login(ctx: StateContext<AuthStateModel>, action: Login) {
     return this.authService.login(action.payload).pipe(
+      tap((result: AuthenticationResponse) => {
+        ctx.patchState({
+          token: result.access_token,
+          email: action.payload.email
+        });
+      })
+    );
+  }
+
+  @Action(Register)
+  register(ctx: StateContext<AuthStateModel>, action: Register) {
+    return this.authService.register(action.payload).pipe(
       tap((result: AuthenticationResponse) => {
         ctx.patchState({
           token: result.access_token,
