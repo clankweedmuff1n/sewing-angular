@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {HeaderComponent} from "../../components/header/header.component";
 import {DiscountElementComponent} from "../../utilities/discount-element/discount-element.component";
 import {FooterComponent} from "../../components/footer/footer.component";

@@ -1,10 +1,8 @@
-import {Component, Input} from '@angular/core';
+import {Component} from '@angular/core';
 import {HeaderButtonComponent} from "../../utilities/header-button/header-button.component";
 import {NgClass, NgForOf, NgIf} from "@angular/common";
 import {HeaderButton} from "../../types/HeaderButton.type";
 import {Router} from "@angular/router";
-import {Observable} from "rxjs";
-import {Product} from "../../models/product";
 
 @Component({
   selector: 'app-header',

@@ -9,9 +9,8 @@ import {GalleryComponent} from "../../components/gallery/gallery.component";
 import {DELETEComponent} from "../../components/delete/delete.component";
 import {Select, Store} from "@ngxs/store";
 import {GetAllProduct, ProductState} from "../../store/product/state/Product.state";
-import {Observable, take} from "rxjs";
+import {Observable} from "rxjs";
 import {Product} from "../../models/product";
-import {AuthState} from "../../store/auth/state/Auth.state";
 
 @Component({
   selector: 'app-main-page',

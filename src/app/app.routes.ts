@@ -7,6 +7,7 @@ import {ProductPageComponent} from "./pages/product-page/product-page.component"
 import {AboutUsPageComponent} from "./pages/about-us-page/about-us-page.component";
 import {ProfilePageComponent} from "./pages/profile-page/profile-page.component";
 import {AuthGuard} from "./store/auth/AuthGuard";
+import {VerificationPageComponent} from "./pages/verification-page/verification-page.component";
 
 export const routes: Routes = [
   {
@@ -20,6 +21,10 @@ export const routes: Routes = [
   {
     path: "profile/registration",
     component: RegistrationPageComponent,
+  },
+  {
+    path: "profile/verification",
+    component: VerificationPageComponent,
   },
   {
     path: "add-product",

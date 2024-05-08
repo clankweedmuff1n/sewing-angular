@@ -1,20 +1,10 @@
-import {Component, Input, OnDestroy} from '@angular/core';
-import {forkJoin, Observable, of, Subscription} from "rxjs";
+import {Component} from '@angular/core';
+import {forkJoin} from "rxjs";
 import {ProductRequest} from "../../models/requests/productRequest";
-import {Category} from "../../models/category";
 import {CategoryRequest} from "../../models/requests/categoryRequest";
 import {ProductService} from "../../store/product/service/Product.service";
 import {CategoryService} from "../../store/category/service/Category.service";
 import {GalleryItemService} from "../../store/galleryItem/service/GalleryItem.service";
-
-interface ChessElement {
-  id: number,
-  title: string,
-  caption: string,
-  button: string,
-  link: string,
-  image: string,
-}
 
 @Component({
   selector: 'app-delete',

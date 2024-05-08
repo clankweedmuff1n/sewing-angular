@@ -1,8 +1,9 @@
 import {Action, Selector, State, StateContext} from "@ngxs/store";
 import {Injectable} from "@angular/core";
-import {tap} from "rxjs";
+import {catchError, tap, throwError} from "rxjs";
 import {AuthService} from "../service/Auth.service";
 import {AuthenticationResponse} from "../../../models/AuthenticationResponse";
+import {HttpErrorResponse} from "@angular/common/http";
 
 export interface AuthStateModel {
   token: string | null;
@@ -52,6 +53,9 @@ export class AuthState {
           token: result.access_token,
           email: action.payload.email
         });
+      }),
+      catchError((error: HttpErrorResponse) => {
+        return throwError(() => error.error instanceof ProgressEvent ? new Error("Server Error") : error.error);
       })
     );
   }
